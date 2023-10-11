@@ -1,0 +1,36 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id                    String                  @id @default(uuid())
+    email                 String                  @unique
+    username              String
+    password              String
+    role                  UserType                @default(CLIENT)
+    createdAt             DateTime                @default(now())
+    updatedAt             DateTime                @updatedAt
+    UserInformationUpdate UserInformationUpdate[]
+
+    @@map("users")
+}
+
+model UserInformationUpdate {
+    id           String @id @default(uuid())
+    gender       String
+    dateOfBirth  String
+    address      String
+    contactNo    String
+    profileImage String
+    userId       String
+    user         User   @relation(fields: [userId], references: [id])
+
+    @@map("user_information_update")
+}
+
+enum UserType {
+    SUPER_ADMIN
+    ADMIN
+    CLIENT
+}

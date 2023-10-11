@@ -1,0 +1,27 @@
+{
+  "name": "tiffin_bati",
+  "version": "1.0.0",
+  "description": "Tiffin Bati is online base healthy food providing service for students and bachelors.",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "iammhador",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cors": "^2.8.14",
+    "@types/express": "^4.17.19",
+    "@types/node": "^20.8.4",
+    "prisma": "^5.4.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "ts-node-dev": "^2.0.0"
+  }
+}
