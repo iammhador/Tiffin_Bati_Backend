@@ -1,60 +1,60 @@
 import { Request, Response } from "express";
-import { UsersService } from "./users.service";
 import { SendResponse } from "../../../shared/sendResponse";
 import httpStatus from "http-status";
+import { BlogService } from "./blog.service";
 
-const getAllUsers = async (req: Request, res: Response) => {
-  const result = await UsersService.getAllUsers();
+const getAllBlog = async (req: Request, res: Response) => {
+  const result = await BlogService.getAllBlog();
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "All Users Data Fetched Successfully",
+    message: "All Blog Data Fetched Successfully",
     data: result,
   });
 };
-const getSingleUsers = async (req: Request, res: Response) => {
-  const result = await UsersService.getSingleUser(req.params.id);
+const getSingleBlog = async (req: Request, res: Response) => {
+  const result = await BlogService.getSingleBlog(req.params.id);
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Single User Data Fetched Successfully",
+    message: "Single Blog Fetched Successfully",
     data: result,
   });
 };
 
 const insertIntoDB = async (req: Request, res: Response) => {
-  const result = await UsersService.insertIntoDB(req.body);
+  const result = await BlogService.insertIntoDB(req.body);
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "New User Created Successfully",
+    message: "New Blog Created Successfully",
     data: result,
   });
 };
 
 const updateIntoDB = async (req: Request, res: Response) => {
-  const result = await UsersService.updateIntoDB(req.params.id, req.body);
+  const result = await BlogService.updateIntoDB(req.params.id, req.body);
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "User Information Updated Successfully",
+    message: "New Blog Information Updated Successfully",
     data: result,
   });
 };
 
 const deleteFromDB = async (req: Request, res: Response) => {
-  const result = await UsersService.deleteFromDB(req.params.id);
+  const result = await BlogService.deleteFromDB(req.params.id);
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "User Information Deleted Successfully",
+    message: "Blog Information Deleted Successfully",
     data: result,
   });
 };
 
-export const UsersController = {
-  getAllUsers,
-  getSingleUsers,
+export const BlogController = {
+  getAllBlog,
+  getSingleBlog,
   insertIntoDB,
   updateIntoDB,
   deleteFromDB,

@@ -1,60 +1,60 @@
 import { Request, Response } from "express";
-import { UsersService } from "./users.service";
 import { SendResponse } from "../../../shared/sendResponse";
 import httpStatus from "http-status";
+import { MenuService } from "./menu.service";
 
-const getAllUsers = async (req: Request, res: Response) => {
-  const result = await UsersService.getAllUsers();
+const getAllMenus = async (req: Request, res: Response) => {
+  const result = await MenuService.getAllMenus();
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "All Users Data Fetched Successfully",
+    message: "All Menus Data Fetched Successfully",
     data: result,
   });
 };
-const getSingleUsers = async (req: Request, res: Response) => {
-  const result = await UsersService.getSingleUser(req.params.id);
+const getSingleMenu = async (req: Request, res: Response) => {
+  const result = await MenuService.getSingleMenu(req.params.id);
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Single User Data Fetched Successfully",
+    message: "Single Menu Data Fetched Successfully",
     data: result,
   });
 };
 
 const insertIntoDB = async (req: Request, res: Response) => {
-  const result = await UsersService.insertIntoDB(req.body);
+  const result = await MenuService.insertIntoDB(req.body);
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "New User Created Successfully",
+    message: "New Menu Created Successfully",
     data: result,
   });
 };
 
 const updateIntoDB = async (req: Request, res: Response) => {
-  const result = await UsersService.updateIntoDB(req.params.id, req.body);
+  const result = await MenuService.updateIntoDB(req.params.id, req.body);
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "User Information Updated Successfully",
+    message: "Menu Information Updated Successfully",
     data: result,
   });
 };
 
 const deleteFromDB = async (req: Request, res: Response) => {
-  const result = await UsersService.deleteFromDB(req.params.id);
+  const result = await MenuService.deleteFromDB(req.params.id);
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "User Information Deleted Successfully",
+    message: "Menu Information Deleted Successfully",
     data: result,
   });
 };
 
-export const UsersController = {
-  getAllUsers,
-  getSingleUsers,
+export const MenuController = {
+  getAllMenus,
+  getSingleMenu,
   insertIntoDB,
   updateIntoDB,
   deleteFromDB,

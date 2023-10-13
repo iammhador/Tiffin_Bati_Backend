@@ -6,5 +6,5 @@ export interface IAdminData {
   dateOfBirth: string;
   contactNo: string;
   address: string;
-  profileImage: string | null;
+  profileImage?: string | null;
 }

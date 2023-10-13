@@ -8,7 +8,7 @@ const getAllAdmins = async (req: Request, res: Response) => {
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Admin Data Fetched Successfully",
+    message: "All Admin Data Fetched Successfully",
     data: result,
   });
 };
@@ -28,7 +28,7 @@ const insertIntoDB = async (req: Request, res: Response) => {
     SendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: "Admin Created Successfully",
+      message: "New Admin Created Successfully",
       data: result,
     });
   } catch (error) {

@@ -39,6 +39,8 @@ model Admin {
     Blog         Blog[]
     todayFood    TodayFood[]
     riceAndPlan  PriceAndPlan[]
+    menu         Menu[]
+    fAQ          FAQ[]
 
     @@map("admins")
 }
@@ -57,6 +59,7 @@ model User {
     updatedAt         DateTime            @updatedAt
     reviewAndRating   ReviewAndRating[]
     subscriptionModel SubscriptionModel[]
+    feedback          Feedback[]
 
     @@map("users")
 }
@@ -66,6 +69,8 @@ model Menu {
     title           String
     category        String
     image           String?
+    adminId         String
+    admin           Admin             @relation(fields: [adminId], references: [id])
     createdAt       DateTime          @default(now())
     updatedAt       DateTime          @updatedAt
     reviewAndRating ReviewAndRating[]
@@ -87,19 +92,24 @@ model PriceAndPlan {
 }
 
 model SubscriptionModel {
-    id           String           @id @default(uuid())
+    id           String              @id @default(uuid())
     subscription SubscriptionType
     price        String
     userId       String
-    user         User             @relation(fields: [userId], references: [id])
-    createdAt    DateTime         @default(now())
-    updatedAt    DateTime         @updatedAt
+    status       SubscriptionStatus?
+    user         User                @relation(fields: [userId], references: [id])
+    createdAt    DateTime            @default(now())
+    updatedAt    DateTime            @updatedAt
 
     @@map("subscription_model")
 }
 
 model TodayFood {
     id        String   @id @default(uuid())
+    title     String
+    category  String
+    image     String?
+    shift     Shift
     adminId   String
     admin     Admin    @relation(fields: [adminId], references: [id])
     createdAt DateTime @default(now())
@@ -122,6 +132,18 @@ model ReviewAndRating {
     @@map("review_and_rating")
 }
 
+model Feedback {
+    id        String   @id @default(uuid())
+    subject   String
+    message   String
+    userId    String
+    user      User     @relation(fields: [userId], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("feedback")
+}
+
 model Blog {
     id          String   @id @default(uuid())
     title       String
@@ -132,6 +154,18 @@ model Blog {
     updatedAt   DateTime @updatedAt
 
     @@map("blog")
+}
+
+model FAQ {
+    id          String   @id @default(uuid())
+    title       String
+    description String
+    adminId     String
+    admin       Admin    @relation(fields: [adminId], references: [id])
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    @@map("faw")
 }
 
 enum AdminRole {
@@ -147,4 +181,14 @@ enum AdminRole {
 enum SubscriptionType {
     Yearly
     Monthly
+}
+
+enum Shift {
+    LUNCH
+    DINNER
+}
+
+enum SubscriptionStatus {
+    REQUESTED
+    ACTIVATE
 }

@@ -1,60 +1,60 @@
 import { Request, Response } from "express";
-import { UsersService } from "./users.service";
 import { SendResponse } from "../../../shared/sendResponse";
 import httpStatus from "http-status";
+import { FAQService } from "./faq.service";
 
-const getAllUsers = async (req: Request, res: Response) => {
-  const result = await UsersService.getAllUsers();
+const getAllFAQ = async (req: Request, res: Response) => {
+  const result = await FAQService.getAllFAQ();
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "All Users Data Fetched Successfully",
+    message: "All FAQ Data Fetched Successfully",
     data: result,
   });
 };
-const getSingleUsers = async (req: Request, res: Response) => {
-  const result = await UsersService.getSingleUser(req.params.id);
+const getSingleFAQ = async (req: Request, res: Response) => {
+  const result = await FAQService.getSingleFAQ(req.params.id);
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Single User Data Fetched Successfully",
+    message: "Single FAQ Fetched Successfully",
     data: result,
   });
 };
 
 const insertIntoDB = async (req: Request, res: Response) => {
-  const result = await UsersService.insertIntoDB(req.body);
+  const result = await FAQService.insertIntoDB(req.body);
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "New User Created Successfully",
+    message: "New FAQ Created Successfully",
     data: result,
   });
 };
 
 const updateIntoDB = async (req: Request, res: Response) => {
-  const result = await UsersService.updateIntoDB(req.params.id, req.body);
+  const result = await FAQService.updateIntoDB(req.params.id, req.body);
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "User Information Updated Successfully",
+    message: "FAQ Information Updated Successfully",
     data: result,
   });
 };
 
 const deleteFromDB = async (req: Request, res: Response) => {
-  const result = await UsersService.deleteFromDB(req.params.id);
+  const result = await FAQService.deleteFromDB(req.params.id);
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "User Information Deleted Successfully",
+    message: "FAQ Information Deleted Successfully",
     data: result,
   });
 };
 
-export const UsersController = {
-  getAllUsers,
-  getSingleUsers,
+export const FAQController = {
+  getAllFAQ,
+  getSingleFAQ,
   insertIntoDB,
   updateIntoDB,
   deleteFromDB,

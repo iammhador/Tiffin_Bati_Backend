@@ -17,7 +17,7 @@ const getSingleSuperAdmin = async (req: Request, res: Response) => {
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Single Super Admin Data Fetched Successfully",
+    message: "Super Admin Data Fetched Successfully",
     data: result,
   });
 };
