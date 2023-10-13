@@ -1,36 +1,150 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
 datasource db {
     provider = "postgresql"
     url      = env("DATABASE_URL")
 }
 
+model SuperAdmin {
+    id           String   @id @default(uuid())
+    email        String   @unique
+    username     String
+    password     String
+    gender       String
+    dataOfBirth  String
+    contactNo    String
+    address      String
+    profileImage String?
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+
+    @@map("super_admin")
+}
+
+model Admin {
+    id           String         @id @default(uuid())
+    email        String         @unique
+    username     String
+    password     String
+    gender       String
+    dataOfBirth  String
+    contactNo    String
+    address      String
+    profileImage String?
+    role         AdminRole?     @default(Moderator)
+    createdAt    DateTime       @default(now())
+    updatedAt    DateTime       @updatedAt
+    Blog         Blog[]
+    todayFood    TodayFood[]
+    riceAndPlan  PriceAndPlan[]
+
+    @@map("admins")
+}
+
 model User {
-    id                    String                  @id @default(uuid())
-    email                 String                  @unique
-    username              String
-    password              String
-    role                  UserType                @default(CLIENT)
-    createdAt             DateTime                @default(now())
-    updatedAt             DateTime                @updatedAt
-    UserInformationUpdate UserInformationUpdate[]
+    id                String              @id @default(uuid())
+    email             String              @unique
+    username          String
+    password          String
+    gender            String
+    dataOfBirth       String
+    contactNo         String
+    address           String
+    profileImage      String?
+    createdAt         DateTime            @default(now())
+    updatedAt         DateTime            @updatedAt
+    reviewAndRating   ReviewAndRating[]
+    subscriptionModel SubscriptionModel[]
 
     @@map("users")
 }
 
-model UserInformationUpdate {
-    id           String @id @default(uuid())
-    gender       String
-    dateOfBirth  String
-    address      String
-    contactNo    String
-    profileImage String
-    userId       String
-    user         User   @relation(fields: [userId], references: [id])
+model Menu {
+    id              String            @id @default(uuid())
+    title           String
+    category        String
+    image           String?
+    createdAt       DateTime          @default(now())
+    updatedAt       DateTime          @updatedAt
+    reviewAndRating ReviewAndRating[]
 
-    @@map("user_information_update")
+    @@map("menu")
 }
 
-enum UserType {
-    SUPER_ADMIN
-    ADMIN
-    CLIENT
+model PriceAndPlan {
+    id           String           @id @default(uuid())
+    subscription SubscriptionType
+    content      String
+    price        String
+    adminId      String
+    admin        Admin            @relation(fields: [adminId], references: [id])
+    createdAt    DateTime         @default(now())
+    updatedAt    DateTime         @updatedAt
+
+    @@map("price_and_plan")
+}
+
+model SubscriptionModel {
+    id           String           @id @default(uuid())
+    subscription SubscriptionType
+    price        String
+    userId       String
+    user         User             @relation(fields: [userId], references: [id])
+    createdAt    DateTime         @default(now())
+    updatedAt    DateTime         @updatedAt
+
+    @@map("subscription_model")
+}
+
+model TodayFood {
+    id        String   @id @default(uuid())
+    adminId   String
+    admin     Admin    @relation(fields: [adminId], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("today_food")
+}
+
+model ReviewAndRating {
+    id        String   @id @default(uuid())
+    review    String
+    rating    String
+    userId    String
+    user      User     @relation(fields: [userId], references: [id])
+    menuId    String
+    menu      Menu     @relation(fields: [menuId], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("review_and_rating")
+}
+
+model Blog {
+    id          String   @id @default(uuid())
+    title       String
+    description String
+    adminId     String
+    admin       Admin    @relation(fields: [adminId], references: [id])
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    @@map("blog")
+}
+
+enum AdminRole {
+    Administrator
+    Moderator
+    Editor
+    Content_Creator
+    Support_Staff
+    Analytics_Manager
+    Security_Manager
+}
+
+enum SubscriptionType {
+    Yearly
+    Monthly
 }

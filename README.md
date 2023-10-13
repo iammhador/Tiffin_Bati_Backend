@@ -113,10 +113,11 @@ Welcome to the Service Booking and Management Website assignment! In this projec
 - Users must log in to access their accounts.
 - Users can create and manage their profiles, including personal information and preferences.
 - Users should be able to view and edit their profiles easily.
+
 - Users can browse available services.
 - Implement a search feature allowing users to search services by name, location, and category.
-- Users should be able to filter services by price range and other relevant criteria.
-- Users can select services and choose available dates and times for booking(if applicable) .
+<!-- - Users should be able to filter services by price range and other relevant criteria. -->
+<!-- - Users can select services and choose available dates and times for booking(if applicable) . -->
 - Implement a smooth and user-friendly booking process with confirmation.
 - Users should be able to track the status of their bookings.
 - Users can leave reviews and ratings for services they have booked.
@@ -131,7 +132,7 @@ Welcome to the Service Booking and Management Website assignment! In this projec
 - Admins should have access to a centralized dashboard to monitor and manage website activities.
 - Admins can add, edit, and manage user accounts.
 - Admins should be able to add, edit, and remove service listings.
-- Provide options for pricing, descriptions, and availability management.
+<!-- - Provide options for pricing, descriptions, and availability management. -->
 - Implement a booking management system for administrators to view and manage booking requests.
 - Admins can accept, reject, or adjust schedules as needed.
 - Create a content management system for administrators to control website content, including blog posts and FAQs.
@@ -153,32 +154,4 @@ Welcome to the Service Booking and Management Website assignment! In this projec
 - To prevent deployment issues on the backend, avoid using a logger & image upload( for multer only)  unless it is explicitly required for debugging or monitoring purposes.
 - Marks for enhancing the user experience of your project. Focus on enhancing usability, accessibility, and overall user satisfaction.
 
-### Examples of Services
 
-Choose one from the following list or propose other services for your project:
-
-1. Car Repairing service
-2. Photography
-3. Cleaning Service
-4. Mobile fix service
-5. Laundry Service
-6. Internet Service
-7. Painting Service
-8. Appliance Repair Service
-9. Home Renovation Service
-10. Tutoring Service
-11. Travel agency Service
-12. Event planning and management service
-13. Computer Repair and IT Services
-14. Interior Design and Decor Service
-15. Wedding Planning and Coordination Service
-
-### Assignment Submission
-
-Your final submission should include:
-
-- Source code (GitHub Repository link of frontend and backend)
-- Live site link
-- A recorded video providing an overview of your project within 2-5 minutes.
-
-**Note:** Must submit your complete website. Incomplete assignments will not be accepted.
