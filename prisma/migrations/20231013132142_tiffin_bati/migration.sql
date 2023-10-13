@@ -1,36 +1,8 @@
-/*
-  Warnings:
-
-  - You are about to drop the column `role` on the `users` table. All the data in the column will be lost.
-  - You are about to drop the `user_information_update` table. If the table is not empty, all the data it contains will be lost.
-  - Added the required column `address` to the `users` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `contactNo` to the `users` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `dataOfBirth` to the `users` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `gender` to the `users` table without a default value. This is not possible if the table is not empty.
-
-*/
 -- CreateEnum
 CREATE TYPE "AdminRole" AS ENUM ('Administrator', 'Moderator', 'Editor', 'Content_Creator', 'Support_Staff', 'Analytics_Manager', 'Security_Manager');
 
 -- CreateEnum
 CREATE TYPE "SubscriptionType" AS ENUM ('Yearly', 'Monthly');
-
--- DropForeignKey
-ALTER TABLE "user_information_update" DROP CONSTRAINT "user_information_update_userId_fkey";
-
--- AlterTable
-ALTER TABLE "users" DROP COLUMN "role",
-ADD COLUMN     "address" TEXT NOT NULL,
-ADD COLUMN     "contactNo" TEXT NOT NULL,
-ADD COLUMN     "dataOfBirth" TEXT NOT NULL,
-ADD COLUMN     "gender" TEXT NOT NULL,
-ADD COLUMN     "profileImage" TEXT;
-
--- DropTable
-DROP TABLE "user_information_update";
-
--- DropEnum
-DROP TYPE "UserType";
 
 -- CreateTable
 CREATE TABLE "super_admin" (
@@ -39,7 +11,7 @@ CREATE TABLE "super_admin" (
     "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "gender" TEXT NOT NULL,
-    "dataOfBirth" TEXT NOT NULL,
+    "dateOfBirth" TEXT NOT NULL,
     "contactNo" TEXT NOT NULL,
     "address" TEXT NOT NULL,
     "profileImage" TEXT,
@@ -56,7 +28,7 @@ CREATE TABLE "admins" (
     "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "gender" TEXT NOT NULL,
-    "dataOfBirth" TEXT NOT NULL,
+    "dateOfBirth" TEXT NOT NULL,
     "contactNo" TEXT NOT NULL,
     "address" TEXT NOT NULL,
     "profileImage" TEXT,
@@ -65,6 +37,23 @@ CREATE TABLE "admins" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "admins_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "users" (
+    "id" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "username" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "gender" TEXT NOT NULL,
+    "dateOfBirth" TEXT NOT NULL,
+    "contactNo" TEXT NOT NULL,
+    "address" TEXT NOT NULL,
+    "profileImage" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -115,7 +104,7 @@ CREATE TABLE "today_food" (
 );
 
 -- CreateTable
-CREATE TABLE "Review_and_rating" (
+CREATE TABLE "review_and_rating" (
     "id" TEXT NOT NULL,
     "review" TEXT NOT NULL,
     "rating" TEXT NOT NULL,
@@ -124,7 +113,7 @@ CREATE TABLE "Review_and_rating" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "Review_and_rating_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "review_and_rating_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -145,6 +134,9 @@ CREATE UNIQUE INDEX "super_admin_email_key" ON "super_admin"("email");
 -- CreateIndex
 CREATE UNIQUE INDEX "admins_email_key" ON "admins"("email");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
+
 -- AddForeignKey
 ALTER TABLE "price_and_plan" ADD CONSTRAINT "price_and_plan_adminId_fkey" FOREIGN KEY ("adminId") REFERENCES "admins"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
@@ -155,10 +147,10 @@ ALTER TABLE "subscription_model" ADD CONSTRAINT "subscription_model_userId_fkey"
 ALTER TABLE "today_food" ADD CONSTRAINT "today_food_adminId_fkey" FOREIGN KEY ("adminId") REFERENCES "admins"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Review_and_rating" ADD CONSTRAINT "Review_and_rating_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "review_and_rating" ADD CONSTRAINT "review_and_rating_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Review_and_rating" ADD CONSTRAINT "Review_and_rating_menuId_fkey" FOREIGN KEY ("menuId") REFERENCES "menu"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "review_and_rating" ADD CONSTRAINT "review_and_rating_menuId_fkey" FOREIGN KEY ("menuId") REFERENCES "menu"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "blog" ADD CONSTRAINT "blog_adminId_fkey" FOREIGN KEY ("adminId") REFERENCES "admins"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

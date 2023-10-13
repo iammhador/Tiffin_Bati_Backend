@@ -13,7 +13,7 @@ model SuperAdmin {
     username     String
     password     String
     gender       String
-    dataOfBirth  String
+    dateOfBirth  String
     contactNo    String
     address      String
     profileImage String?
@@ -29,7 +29,7 @@ model Admin {
     username     String
     password     String
     gender       String
-    dataOfBirth  String
+    dateOfBirth  String
     contactNo    String
     address      String
     profileImage String?
@@ -49,7 +49,7 @@ model User {
     username          String
     password          String
     gender            String
-    dataOfBirth       String
+    dateOfBirth       String
     contactNo         String
     address           String
     profileImage      String?
