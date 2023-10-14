@@ -12,10 +12,15 @@ import { FAQRoutes } from "../app/modules/faq/faq.routes";
 import { FeedbackRoutes } from "../app/modules/feedback/feedback.routes";
 import { AllUsersRoutes } from "../app/modules/allUsers/allUsers.routes";
 import { NewFoodRoutes } from "../app/modules/newFood/newFood.routes";
+import { AuthRoutes } from "../app/modules/auth/auth.routes";
 
 const router = express.Router();
 
 const moduleRoutes = [
+  {
+    path: "/auth",
+    route: AuthRoutes,
+  },
   {
     path: "/all-users",
     route: AllUsersRoutes,
