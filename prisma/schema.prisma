@@ -7,11 +7,25 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+model AllUsers {
+    id        String   @id @default(uuid())
+    userId    String
+    email     String
+    username  String
+    password  String
+    role      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("all_users")
+}
+
 model SuperAdmin {
     id           String   @id @default(uuid())
     email        String   @unique
     username     String
     password     String
+    role         String   @default("SUPER_ADMIN")
     gender       String
     dateOfBirth  String
     contactNo    String
@@ -28,12 +42,13 @@ model Admin {
     email        String         @unique
     username     String
     password     String
+    role         String         @default("ADMIN")
     gender       String
     dateOfBirth  String
     contactNo    String
     address      String
     profileImage String?
-    role         AdminRole?     @default(Moderator)
+    adminRole    AdminRole?     @default(Moderator)
     createdAt    DateTime       @default(now())
     updatedAt    DateTime       @updatedAt
     Blog         Blog[]
@@ -41,6 +56,7 @@ model Admin {
     riceAndPlan  PriceAndPlan[]
     menu         Menu[]
     fAQ          FAQ[]
+    NewFood      NewFood[]
 
     @@map("admins")
 }
@@ -50,6 +66,7 @@ model User {
     email             String              @unique
     username          String
     password          String
+    role              String              @default("USER")
     gender            String
     dateOfBirth       String
     contactNo         String
@@ -116,6 +133,19 @@ model TodayFood {
     updatedAt DateTime @updatedAt
 
     @@map("today_food")
+}
+
+model NewFood {
+    id        String   @id @default(uuid())
+    title     String
+    category  String
+    image     String?
+    adminId   String
+    admin     Admin    @relation(fields: [adminId], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("new_food")
 }
 
 model ReviewAndRating {

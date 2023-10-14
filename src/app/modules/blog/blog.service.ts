@@ -2,7 +2,7 @@ import { prisma } from "../../../shared/prisma";
 import { IBlogData } from "./blog.constance";
 
 const getAllBlog = async () => {
-  const result = await prisma.blog.findFirst();
+  const result = await prisma.blog.findMany();
   return result;
 };
 

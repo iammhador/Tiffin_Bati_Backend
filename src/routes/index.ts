@@ -10,10 +10,16 @@ import { ReviewAndRatingRoutes } from "../app/modules/reviewAndRating/reviewAndR
 import { BlogRoutes } from "../app/modules/blog/blog.routes";
 import { FAQRoutes } from "../app/modules/faq/faq.routes";
 import { FeedbackRoutes } from "../app/modules/feedback/feedback.routes";
+import { AllUsersRoutes } from "../app/modules/allUsers/allUsers.routes";
+import { NewFoodRoutes } from "../app/modules/newFood/newFood.routes";
 
 const router = express.Router();
 
 const moduleRoutes = [
+  {
+    path: "/all-users",
+    route: AllUsersRoutes,
+  },
   {
     path: "/super-admin",
     route: SuperAdminRoutes,
@@ -41,6 +47,10 @@ const moduleRoutes = [
   {
     path: "/today-food",
     route: TodayFoodRoutes,
+  },
+  {
+    path: "/new-food",
+    route: NewFoodRoutes,
   },
   {
     path: "/review-and-rating",

@@ -2,7 +2,7 @@ import { prisma } from "../../../shared/prisma";
 import { ISubscriptionData } from "./subscription.constance";
 
 const getAllSubscription = async () => {
-  const result = await prisma.subscriptionModel.findFirst();
+  const result = await prisma.subscriptionModel.findMany();
   return result;
 };
 

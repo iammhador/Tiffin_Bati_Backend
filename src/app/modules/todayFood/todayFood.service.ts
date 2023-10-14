@@ -2,7 +2,7 @@ import { prisma } from "../../../shared/prisma";
 import { ITodayFoodData } from "./todayFood.constance";
 
 const getAllTodayFood = async () => {
-  const result = await prisma.todayFood.findFirst();
+  const result = await prisma.todayFood.findMany();
   return result;
 };
 

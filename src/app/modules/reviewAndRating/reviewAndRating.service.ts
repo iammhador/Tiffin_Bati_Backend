@@ -2,7 +2,7 @@ import { prisma } from "../../../shared/prisma";
 import { IReviewAndRatingData } from "./reviewAndRating.constance";
 
 const getAllReviewAndRating = async () => {
-  const result = await prisma.reviewAndRating.findFirst();
+  const result = await prisma.reviewAndRating.findMany();
   return result;
 };
 

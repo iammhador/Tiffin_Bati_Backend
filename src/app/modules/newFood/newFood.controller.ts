@@ -1,37 +1,23 @@
 import { Request, Response } from "express";
 import { SendResponse } from "../../../shared/sendResponse";
 import httpStatus from "http-status";
-import { MenuService } from "./menu.service";
+import { MenuService } from "./newFood.service";
 
-const getAllMenus = async (req: Request, res: Response) => {
-  const { page, pageSize, searchTerm, sortBy, sortOrder } = req.query;
-
-  const defaultPage = 0;
-  const defaultPageSize = 10;
-  const defaultSortBy = "title";
-  const defaultSortOrder = "asc";
-
-  const result = await MenuService.getAllMenus(
-    page || defaultPage,
-    pageSize || defaultPageSize,
-    searchTerm || "",
-    sortBy || defaultSortBy,
-    sortOrder || defaultSortOrder
-  );
+const getAllNewFoods = async (req: Request, res: Response) => {
+  const result = await MenuService.getAllNewFoods();
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "All Menus Data Fetched Successfully",
+    message: "All Foods Data Fetched Successfully",
     data: result,
   });
 };
-
-const getSingleMenu = async (req: Request, res: Response) => {
-  const result = await MenuService.getSingleMenu(req.params.id);
+const getSingleFood = async (req: Request, res: Response) => {
+  const result = await MenuService.getSingleFood(req.params.id);
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Single Menu Data Fetched Successfully",
+    message: "Single Food Data Fetched Successfully",
     data: result,
   });
 };
@@ -41,7 +27,7 @@ const insertIntoDB = async (req: Request, res: Response) => {
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "New Menu Created Successfully",
+    message: "New Food Created Successfully",
     data: result,
   });
 };
@@ -51,7 +37,7 @@ const updateIntoDB = async (req: Request, res: Response) => {
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Menu Information Updated Successfully",
+    message: "Food Information Updated Successfully",
     data: result,
   });
 };
@@ -61,14 +47,14 @@ const deleteFromDB = async (req: Request, res: Response) => {
   SendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Menu Information Deleted Successfully",
+    message: "Food Information Deleted Successfully",
     data: result,
   });
 };
 
-export const MenuController = {
-  getAllMenus,
-  getSingleMenu,
+export const NewFoodController = {
+  getAllNewFoods,
+  getSingleFood,
   insertIntoDB,
   updateIntoDB,
   deleteFromDB,

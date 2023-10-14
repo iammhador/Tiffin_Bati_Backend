@@ -2,7 +2,7 @@ import { prisma } from "../../../shared/prisma";
 import { IFeedbackData} from "./feedback.constance";
 
 const getAllFeedback = async () => {
-  const result = await prisma.feedback.findFirst();
+  const result = await prisma.feedback.findMany();
   return result;
 };
 

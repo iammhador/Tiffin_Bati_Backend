@@ -2,7 +2,7 @@ import { prisma } from "../../../shared/prisma";
 import { IPriceAndPlanData } from "./priceAndPlan.constance";
 
 const getAllPriceAndPlan = async () => {
-  const result = await prisma.priceAndPlan.findFirst();
+  const result = await prisma.priceAndPlan.findMany();
   return result;
 };
 
