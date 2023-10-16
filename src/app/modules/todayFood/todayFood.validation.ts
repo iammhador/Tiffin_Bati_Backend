@@ -8,7 +8,6 @@ const create = z.object({
     category: z.string({ required_error: "Category is required" }),
     shift: z.string({ required_error: "Shift is required" }),
     adminId: z.string({ required_error: "Admin ID is required" }),
-    image: z.string({ required_error: "Image is required" }).optional(),
   }),
 });
 
@@ -20,7 +19,6 @@ const update = z.object({
     category: z.string({ required_error: "Category is required" }).optional(),
     shift: z.string({ required_error: "Shift is required" }).optional(),
     adminId: z.string({ required_error: "Admin ID is required" }).optional(),
-    image: z.string({ required_error: "Image is required" }).optional(),
   }),
 });
 

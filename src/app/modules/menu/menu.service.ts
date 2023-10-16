@@ -54,7 +54,7 @@ const getAllMenus = async (
   return {
     meta: {
       total,
-      page: parsedPage, 
+      page: parsedPage,
       limit: parsedPageSize,
     },
     data,

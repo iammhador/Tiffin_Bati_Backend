@@ -1,5 +1,5 @@
 import { prisma } from "../../../shared/prisma";
-import { IFeedbackData} from "./feedback.constance";
+import { IFeedbackData } from "./feedback.constance";
 
 const getAllFeedback = async () => {
   const result = await prisma.feedback.findMany();
@@ -15,9 +15,7 @@ const getSingleFeedback = async (id: string) => {
   return result;
 };
 
-const insertIntoDB = async (
-  data: IFeedbackData
-): Promise<IFeedbackData> => {
+const insertIntoDB = async (data: IFeedbackData): Promise<IFeedbackData> => {
   const result = await prisma.feedback.create({ data });
   return result;
 };

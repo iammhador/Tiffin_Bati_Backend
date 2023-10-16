@@ -9,9 +9,6 @@ const create = z.object({
     dateOfBirth: z.string({ required_error: "Date of Birth is required." }),
     contactNo: z.string({ required_error: "Contact No is required." }),
     address: z.string({ required_error: "Address is required." }),
-    profileImage: z
-      .string({ required_error: "Profile Image is required." })
-      .optional(),
   }),
 });
 
@@ -28,9 +25,6 @@ const update = z.object({
       .string({ required_error: "Contact No is required." })
       .optional(),
     address: z.string({ required_error: "Address is required." }).optional(),
-    profileImage: z
-      .string({ required_error: "Profile Image is required." })
-      .optional(),
   }),
 });
 
