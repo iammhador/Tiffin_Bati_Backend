@@ -1,5 +1,8 @@
 import { prisma } from "../../../shared/prisma";
 import { ITodayFoodData } from "./todayFood.constance";
+const app = require("express")();
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
 
 const getAllTodayFood = async () => {
   const result = await prisma.todayFood.findMany();
@@ -17,6 +20,7 @@ const getSingleTodayFood = async (id: string) => {
 
 const insertIntoDB = async (data: ITodayFoodData): Promise<ITodayFoodData> => {
   const result = await prisma.todayFood.create({ data });
+
   return result;
 };
 

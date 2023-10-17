@@ -43,65 +43,80 @@ const insertIntoDB = async (data: IAdminData): Promise<IAdminData> => {
   return result;
 };
 
-const updateIntoDB = async (
-  id: string,
-  data: any
-): Promise<Partial<IAdminData>> => {
-  const { password, ...others } = data;
+const updateIntoDB = async (id: string, data: any) => {
+  let result = null;
+  const findAdmin = await prisma.admin.findUnique({
+    where: {
+      id,
+    },
+  });
 
-  if (password) {
-    const hashedPassword = await bcrypt.hash(
-      password,
-      Number(config.bcrypt_salt_rounds)
-    );
-    const result = await prisma.admin.update({
+  if (findAdmin && data?.role === "user") {
+    await prisma.admin.delete({
       where: {
         id,
       },
-      data: { ...others, password: hashedPassword },
     });
 
-    if (!!result) {
-      await prisma.allUsers.updateMany({
+    const admin = await prisma.allUsers.findFirst({
+      where: {
+        userId: id,
+      },
+    });
+
+    if (admin) {
+      const adminId = admin.id;
+      await prisma.allUsers.delete({
         where: {
-          userId: result.id,
-        },
-        data: {
-          userId: result.id,
-          username: result.username,
-          email: result.email,
-          password: hashedPassword,
-          role: result.role,
+          id: adminId,
         },
       });
     }
 
-    return result;
+    await prisma.user.create({
+      data: {
+        username: findAdmin.username,
+        email: findAdmin.email,
+        password: findAdmin?.password,
+        role: "user",
+        address: "",
+        contactNo: "",
+        dateOfBirth: "",
+        gender: "",
+        profileImage: "",
+      },
+    });
+
+    result = await prisma.allUsers.create({
+      data: {
+        userId: findAdmin.id,
+        username: findAdmin.username,
+        email: findAdmin.email,
+        password: findAdmin?.password,
+        role: "user",
+      },
+    });
   } else {
     const result = await prisma.admin.update({
       where: {
         id,
       },
-      data: others,
+      data,
     });
-
-    if (!!result) {
-      await prisma.allUsers.updateMany({
-        where: {
-          userId: result.id,
-        },
-        data: {
-          userId: result.id,
-          username: result.username,
-          email: result.email,
-          password: result.password,
-          role: result.role,
-        },
-      });
-    }
-
-    return result;
+    await prisma.allUsers.updateMany({
+      where: {
+        userId: result.id,
+      },
+      data: {
+        userId: result.id,
+        username: result.username,
+        email: result.email,
+        role: result.role,
+      },
+    });
   }
+
+  return result;
 };
 
 const deleteFromDB = async (id: string) => {

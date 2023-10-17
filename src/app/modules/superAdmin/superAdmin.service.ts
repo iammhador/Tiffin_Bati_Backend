@@ -56,6 +56,7 @@ const updateIntoDB = async (
       password,
       Number(config.bcrypt_salt_rounds)
     );
+
     const result = await prisma.superAdmin.update({
       where: {
         id,
@@ -63,20 +64,18 @@ const updateIntoDB = async (
       data: { ...others, password: hashedPassword },
     });
 
-    if (!!result) {
-      await prisma.allUsers.updateMany({
-        where: {
-          userId: result.id,
-        },
-        data: {
-          userId: result.id,
-          username: result.username,
-          email: result.email,
-          password: hashedPassword,
-          role: result.role,
-        },
-      });
-    }
+    await prisma.allUsers.updateMany({
+      where: {
+        userId: result.id,
+      },
+      data: {
+        userId: result.id,
+        username: result.username,
+        email: result.email,
+        password: hashedPassword,
+        role: result.role,
+      },
+    });
 
     return result;
   } else {

@@ -13,6 +13,16 @@ const getAllUsers = async (req: Request, res: Response) => {
   });
 };
 
+const getSingleUserFromUsers = async (req: Request, res: Response) => {
+  const result = await AllUsersService.getSingleUserFromUsers(req.params.id);
+  SendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "All Users Data Fetched Successfully",
+    data: result,
+  });
+};
+
 const deleteSingleUserFromAllUsers = async (req: Request, res: Response) => {
   const result = await AllUsersService.deleteSingleUserFromAllUsers(
     req.params.id
@@ -27,5 +37,6 @@ const deleteSingleUserFromAllUsers = async (req: Request, res: Response) => {
 
 export const AllUsersController = {
   getAllUsers,
+  getSingleUserFromUsers,
   deleteSingleUserFromAllUsers,
 };

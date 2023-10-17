@@ -5,6 +5,7 @@ const router = express.Router();
 
 router
   .get("/", AllUsersController.getAllUsers)
-  .delete("/", AllUsersController.deleteSingleUserFromAllUsers);
+  .get("/:id", AllUsersController.getSingleUserFromUsers)
+  .delete("/:id", AllUsersController.deleteSingleUserFromAllUsers);
 
 export const AllUsersRoutes = router;
