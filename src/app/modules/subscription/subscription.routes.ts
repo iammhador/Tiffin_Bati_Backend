@@ -8,6 +8,7 @@ const router = express.Router();
 router
   .get("/", subscriptionController.getAllSubscription)
   .get("/:id", subscriptionController.getSingleSubscription)
+  .get("/user/:id", subscriptionController.getSingleSubscriptionByUserId)
   .post(
     "/",
     validateRequest(SubscriptionValidation.create),

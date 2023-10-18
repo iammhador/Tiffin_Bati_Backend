@@ -2,5 +2,5 @@ export interface ISubscriptionData {
   subscription: "Monthly" | "Yearly";
   price: string;
   userId: string;
-  status?: "REQUESTED" | "ACTIVATE" | null;
+  status?: "REQUESTED" | "ACTIVATE" | "CANCEL" | null;
 }

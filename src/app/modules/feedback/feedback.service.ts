@@ -2,7 +2,11 @@ import { prisma } from "../../../shared/prisma";
 import { IFeedbackData } from "./feedback.constance";
 
 const getAllFeedback = async () => {
-  const result = await prisma.feedback.findMany();
+  const result = await prisma.feedback.findMany({
+    include: {
+      user: true,
+    },
+  });
   return result;
 };
 
@@ -10,6 +14,9 @@ const getSingleFeedback = async (id: string) => {
   const result = await prisma.feedback.findUnique({
     where: {
       id,
+    },
+    include: {
+      user: true,
     },
   });
   return result;

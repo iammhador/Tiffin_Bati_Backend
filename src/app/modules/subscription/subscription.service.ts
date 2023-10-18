@@ -2,7 +2,11 @@ import { prisma } from "../../../shared/prisma";
 import { ISubscriptionData } from "./subscription.constance";
 
 const getAllSubscription = async () => {
-  const result = await prisma.subscriptionModel.findMany();
+  const result = await prisma.subscriptionModel.findMany({
+    include: {
+      user: true,
+    },
+  });
   return result;
 };
 
@@ -10,6 +14,15 @@ const getSingleSubscription = async (id: string) => {
   const result = await prisma.subscriptionModel.findUnique({
     where: {
       id,
+    },
+  });
+  return result;
+};
+
+const getSingleSubscriptionByUserId = async (id: string) => {
+  const result = await prisma.subscriptionModel.findFirst({
+    where: {
+      userId: id,
     },
   });
   return result;
@@ -47,6 +60,7 @@ const deleteFromDB = async (id: string) => {
 export const SubscriptionService = {
   getAllSubscription,
   getSingleSubscription,
+  getSingleSubscriptionByUserId,
   insertIntoDB,
   updateIntoDB,
   deleteFromDB,

@@ -7,9 +7,9 @@ const getAllReviewAndRating = async () => {
 };
 
 const getSingleReviewAndRating = async (id: string) => {
-  const result = await prisma.reviewAndRating.findUnique({
+  const result = await prisma.reviewAndRating.findMany({
     where: {
-      id,
+      menuId: id,
     },
   });
   return result;

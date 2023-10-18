@@ -22,6 +22,18 @@ const getSingleSubscription = async (req: Request, res: Response) => {
   });
 };
 
+const getSingleSubscriptionByUserId = async (req: Request, res: Response) => {
+  const result = await SubscriptionService.getSingleSubscriptionByUserId(
+    req.params.id
+  );
+  SendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Single Subscription Data Fetched Successfully To Use User ID",
+    data: result,
+  });
+};
+
 const insertIntoDB = async (req: Request, res: Response) => {
   const result = await SubscriptionService.insertIntoDB(req.body);
   SendResponse(res, {
@@ -58,6 +70,7 @@ const deleteFromDB = async (req: Request, res: Response) => {
 export const subscriptionController = {
   getAllSubscription,
   getSingleSubscription,
+  getSingleSubscriptionByUserId,
   insertIntoDB,
   updateIntoDB,
   deleteFromDB,
