@@ -1,157 +1,62 @@
-# Service Booking and Management Website ( Full Stack)
+# TIFFIN BATI
 
-### Introduction
+Tiffin Bati is a website dedicated to providing solutions for individuals struggling with cooking as bachelors. The platform is designed to offer an easy way for bachelors to access daily food options and plan their meals effortlessly. With an intuitive interface and a range of features, Bachelor Food Service aims to simplify the process of meal planning for its users.
 
-Welcome to the Service Booking and Management Website assignment! In this project, you will be tasked with designing and building a comprehensive online platform that allows users to browse, book, and manage various services. The assignment is divided into three main parts: user-facing features, admin-facing features, and super admin-facing features. Below, you'll find a breakdown of the requirements for each of these categories.
+# TIFFIN BATI
 
-# Assignment Requirements:
+Tiffin Bati is a website dedicated to providing solutions for individuals struggling with cooking as bachelors. The platform is designed to offer an easy way for bachelors to access daily food options and plan their meals effortlessly. With an intuitive interface and a range of features, Bachelor Food Service aims to simplify the process of meal planning for its users.
 
-### User-Facing Features
+## Technologies Used
 
-### Registration and Login
+- Postgres SQL
+- Prisma
+- Express
+- Node.js
+- JSON Web Token (JWT)
+- TypeScript
+- Zod
 
-- Your website should offer a user-friendly and secure registration process.
-- Implement proper validation to ensure data accuracy.
+## Database
 
-### Service Search and Add to Cart
+The data is stored using Superbase, a flexible and scalable data storage solution that enables efficient data management for the TTiffin Bati platform.
 
-- Create an intuitive interface for users to browse and search for services.
-- Allow users to add services to their cart for easy booking.
+## Environmental Variables
 
-### Booking and Scheduling
+Ensure to set up the following environmental variables:
 
-- Develop a booking system that enables users to select service dates and times.
-- Ensure a smooth, step-by-step booking process with clear confirmation.
+- `NODE_ENV`: development
+- `PORT`: 5000
+- `DATABASE_URL`: your_database_url
+- `BCRYPT_SALT_ROUNDS`: 12
+- `JWT_SECRET`: your_jwt_secret
+- `JWT_EXPIRES_IN`: 7d
 
-### Profile Management
+## Getting Started
 
-- Design user profiles where users can manage personal information and preferences.
-- Enable users to view and edit their profiles.
+### Installation
 
-### Review and Rating System
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Run `npm install` to install the necessary dependencies.
+4. Start the development server using `npm start`.
 
-- Implement a system for users to leave reviews and ratings for services.
-- Display these reviews and ratings on service listings.
+### Usage
 
-### Notifications (optional)
+- Ensure you have the necessary environment variables set up.
+- Make sure to configure the backend server accordingly for full functionality.
 
-- Create a notifications center where users receive booking confirmations, reminders, and updates.
+## Contributing
 
-### Service History
+Contributions are always welcome! Please adhere to the guidelines outlined in the `CONTRIBUTING.md` file.
 
-- Develop a user dashboard to view booking history and check booking statuses.
-- Allow users to cancel bookings when necessary.
+## License
 
-### Feedback Forms
+This project is licensed under the [MIT License](LICENSE).
 
-- Design feedback forms for users to submit comments and suggestions.
+## Acknowledgements
 
-### User Dashboard
+We would like to express our gratitude to all the contributors and supporters who have helped make this project possible.
 
-- Create a dashboard that provides an overview of booking order history and statuses.
-- Include options for canceling bookings.
+## Contact
 
-### Admin-Facing Features
-
-### Admin Dashboard
-
-- Develop a central dashboard for administrators to monitor and manage website activities.
-
-### User Management
-
-- Create a user management system for administrators to add, edit, and manage user accounts.
-- Implement role-based permissions.
-
-### Service Management
-
-- Design an interface for adding, editing, and removing service listings.
-- Include options for pricing, descriptions, and availability.
-
-### Booking Management
-
-- Implement a booking management system for administrators to view and manage booking requests.
-- Allow admins to accept, reject, and adjust schedules.
-
-### Content Management
-
-- Create a content management system for administrators to control website content, including blog posts and FAQs.
-
-### Profile Management
-
-- Allow admins to manage their profiles and access permissions.
-
-### Super Admin-Facing Features
-
-### Add Admin and Manage Admin
-
-- Develop a feature that allows super admins to add new admin users.
-- Provide options for managing admin roles.
-    
-    ### Profile Management
-    
-    - Create a profile management system for super admins to update their personal information.
-
-### Homepage Contents
-
-- Navbar
-- Header
-- Available Service
-- Upcoming Services
-- Events by Category
-- Survey/Overview
-- Client Review
-- Latest News
-- Footer
-- Two or more unique Sections
-
-### Functional Requirements
-
-### User Functional Requirements
-
-- Users should be able to register with a valid email address.
-- Implement password validation and security measures.
-- Users must log in to access their accounts.
-- Users can create and manage their profiles, including personal information and preferences.
-- Users should be able to view and edit their profiles easily.
-
-- Users can browse available services.
-- Implement a search feature allowing users to search services by name, location, and category.
-<!-- - Users should be able to filter services by price range and other relevant criteria. -->
-<!-- - Users can select services and choose available dates and times for booking(if applicable) . -->
-- Implement a smooth and user-friendly booking process with confirmation.
-- Users should be able to track the status of their bookings.
-- Users can leave reviews and ratings for services they have booked.
-- Reviews and ratings should be displayed on service listings.
-- Create a notifications center where users receive booking confirmations, reminders, and updates ( optional - readonly )
-- Develop a user dashboard displaying booking history and statuses.
-- Users should have the option to cancel bookings if necessary.
-- Design user-friendly feedback forms for users to submit comments and suggestions.
-
-### Admin Functional Requirements
-
-- Admins should have access to a centralized dashboard to monitor and manage website activities.
-- Admins can add, edit, and manage user accounts.
-- Admins should be able to add, edit, and remove service listings.
-<!-- - Provide options for pricing, descriptions, and availability management. -->
-- Implement a booking management system for administrators to view and manage booking requests.
-- Admins can accept, reject, or adjust schedules as needed.
-- Create a content management system for administrators to control website content, including blog posts and FAQs.
-- Allow administrators to manage their profiles.
-
-### Super Admin Functional Requirements
-
-- Super admins can add new admin users to the system.
-- Provide options for managing admin roles.
-- Create a profile management system for super admins to update their personal information.
-
-### Important Notes
-
-- You have the freedom to choose your preferred technology stack; however, it is mandatory to include either Next.js or Prisma alongside PostgreSQL in your project. You may opt to utilize both if your project's requirements necessitate it.
-- Implement robust data validation using appropriate libraries such as Zod, Joi, or equivalent.
-- Integrate a pagination system, filtering capabilities, and sorting functionality into your backend API to enhance the user experience, simplify navigation, and enable convenient access to pertinent data.
-- Prioritize proper error handling throughout your codebase.
-- Maintain coding best practices to ensure code quality and readability.
-- To prevent deployment issues on the backend, avoid using a logger & image upload( for multer only)  unless it is explicitly required for debugging or monitoring purposes.
-- Marks for enhancing the user experience of your project. Focus on enhancing usability, accessibility, and overall user satisfaction.
-
-
+For any inquiries or support, please contact us at [https://iammhador.netlify.app/](iammhador@gmail.com).
