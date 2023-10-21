@@ -13,6 +13,7 @@ import { FeedbackRoutes } from "../app/modules/feedback/feedback.routes";
 import { AllUsersRoutes } from "../app/modules/allUsers/allUsers.routes";
 import { NewFoodRoutes } from "../app/modules/newFood/newFood.routes";
 import { AuthRoutes } from "../app/modules/auth/auth.routes";
+import { ExtraTodayFoodRoutes } from "../app/modules/extraTodayFood/extraTodayFood.routes";
 
 const router = express.Router();
 
@@ -52,6 +53,10 @@ const moduleRoutes = [
   {
     path: "/today-food",
     route: TodayFoodRoutes,
+  },
+  {
+    path: "/extra-today-foot",
+    route: ExtraTodayFoodRoutes,
   },
   {
     path: "/new-food",

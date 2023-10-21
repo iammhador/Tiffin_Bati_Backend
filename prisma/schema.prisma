@@ -77,6 +77,7 @@ model User {
     reviewAndRating   ReviewAndRating[]
     subscriptionModel SubscriptionModel[]
     feedback          Feedback[]
+    TodayFoodExtra    TodayFoodExtra[]
 
     @@map("users")
 }
@@ -122,17 +123,33 @@ model SubscriptionModel {
 }
 
 model TodayFood {
-    id        String   @id @default(uuid())
+    id        String    @id @default(uuid())
     title     String
     category  String
     image     String?
     shift     Shift
+    isCancel  isCancel?
     adminId   String
-    admin     Admin    @relation(fields: [adminId], references: [id])
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    admin     Admin     @relation(fields: [adminId], references: [id])
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
 
     @@map("today_food")
+}
+
+model TodayFoodExtra {
+    id        String    @id @default(uuid())
+    title     String
+    category  String
+    image     String?
+    shift     Shift
+    isCancel  isCancel?
+    userId    String
+    user      User      @relation(fields: [userId], references: [id])
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+
+    @@map("today_food_extra")
 }
 
 model NewFood {
@@ -222,4 +239,9 @@ enum SubscriptionStatus {
     REQUESTED
     ACTIVATE
     CANCEL
+}
+
+enum isCancel {
+    YES
+    NO
 }
