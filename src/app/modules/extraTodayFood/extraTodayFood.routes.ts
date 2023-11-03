@@ -6,7 +6,11 @@ import { ExtraTodayFoodValidation } from "./extraTodayFood.validation";
 const router = express.Router();
 
 router
-  .get("/", ExtraTodayFoodController.getAllExtraTodayFood)
+  .get(
+    "/",
+
+    ExtraTodayFoodController.getAllExtraTodayFood
+  )
   .get("/:id", ExtraTodayFoodController.getSingleExtraTodayFood)
   .post(
     "/",

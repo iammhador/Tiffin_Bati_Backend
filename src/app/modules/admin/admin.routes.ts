@@ -7,7 +7,11 @@ const router = express.Router();
 
 router
   .get("/", AdminController.getAllAdmins)
-  .get("/:id", AdminController.getSingleAdmins)
+  .get(
+    "/:id",
+
+    AdminController.getSingleAdmins
+  )
   .post(
     "/",
     validateRequest(AdminValidation.create),
