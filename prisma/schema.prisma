@@ -77,7 +77,8 @@ model User {
     reviewAndRating   ReviewAndRating[]
     subscriptionModel SubscriptionModel[]
     feedback          Feedback[]
-    TodayFoodExtra    TodayFoodExtra[]
+    todayFoodExtra    TodayFoodExtra[]
+    pAYMENT           PAYMENT[]
 
     @@map("users")
 }
@@ -212,7 +213,20 @@ model FAQ {
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
 
-    @@map("faw")
+    @@map("faq")
+}
+
+model PAYMENT {
+    id            String   @id @default(uuid())
+    transactionId String
+    price         Int
+    userName      String
+    userId        String
+    user          User     @relation(fields: [userId], references: [id])
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+
+    @@map("payment")
 }
 
 enum AdminRole {

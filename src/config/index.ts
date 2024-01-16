@@ -10,4 +10,5 @@ export default {
   bcrypt_salt_rounds: process.env.BCRYPT_SALT_ROUNDS,
   jwt_secret: process.env.JWT_SECRET,
   jwt_expires: process.env.JWT_EXPIRES_IN,
+  stripe_secret: process.env.STRIPE_SECRET,
 };

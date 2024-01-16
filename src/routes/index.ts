@@ -14,6 +14,7 @@ import { AllUsersRoutes } from "../app/modules/allUsers/allUsers.routes";
 import { NewFoodRoutes } from "../app/modules/newFood/newFood.routes";
 import { AuthRoutes } from "../app/modules/auth/auth.routes";
 import { ExtraTodayFoodRoutes } from "../app/modules/extraTodayFood/extraTodayFood.routes";
+import { PaymentRoutes } from "../app/modules/payment/payment.routes";
 
 const router = express.Router();
 
@@ -77,6 +78,10 @@ const moduleRoutes = [
   {
     path: "/faq",
     route: FAQRoutes,
+  },
+  {
+    path: "/payment",
+    route: PaymentRoutes,
   },
 ];
 
