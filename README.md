@@ -16,7 +16,7 @@ Tiffin Bati is a website dedicated to providing solutions for individuals strugg
 
 The data is stored using Superbase, a flexible and scalable data storage solution that enables efficient data management for the TTiffin Bati platform.
 
-![Database Diagram](https://i.ibb.co/3hFfHDH/tiffin-bati-drawio-2.png)
+![Database Diagram](https://i.ibb.co/tHGKR15/tiffin-bati-drawio.png)
 
 ## Environmental Variables
 
