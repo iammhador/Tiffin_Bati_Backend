@@ -3,6 +3,28 @@ import { prisma } from "../../../shared/prisma";
 
 const stripe = require("stripe")(config.stripe_secret);
 
+const getAllPayments = async () => {
+  const result = await prisma.pAYMENT.findMany({
+    include: {
+      user: true,
+    },
+  });
+  return result;
+};
+
+const getSinglePayments = async (id: string) => {
+  const result = await prisma.pAYMENT.findFirst({
+    where: {
+      userId: id,
+    },
+    include: {
+      user: true,
+    },
+  });
+
+  return result;
+};
+
 const paymentIntent = async (body: any) => {
   const amount = body?.price?.price * 100;
   const paymentIntent = await stripe.paymentIntents.create({
@@ -28,6 +50,8 @@ const createPayment = async (body: any) => {
 };
 
 export const PaymentsService = {
+  getAllPayments,
+  getSinglePayments,
   paymentIntent,
   createPayment,
 };
